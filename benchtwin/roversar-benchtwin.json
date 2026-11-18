@@ -1,0 +1,44 @@
+{
+  "schema": "benchtwin/project/v1",
+  "project_id": "roversar-autonomous-robot",
+  "name": "RoverSAR — Autonomous Search & Rescue Ground Robot",
+  "revision": "1.0.0",
+  "envelope_mm": { "length": 240.0, "width": 180.0, "height": 95.0 },
+  "power_rails": [
+    { "name": "VBAT_FUSED", "nominal_v": 7.4, "min_v": 6.0, "max_v": 8.4, "fuse_a": 5.0 },
+    { "name": "V5_REG", "nominal_v": 5.0, "max_current_a": 3.0, "regulator": "LM2596S-5.0" },
+    { "name": "V3_3", "nominal_v": 3.3, "regulator": "ESP32 AMS1117-3.3" }
+  ],
+  "cad_assets": [
+    { "id": "chassis_base", "file": "roversar_base_plate.stl", "material": "PETG", "color": "#1e293b" }
+  ],
+  "components": [
+    { "ref": "U1", "type": "ESP32-WROOM-32D", "position_mm": [10, 0, 34] },
+    { "ref": "U2", "type": "TB6612FNG", "position_mm": [-12, 22, 34] },
+    { "ref": "U3", "type": "MPU6050", "i2c_addr": "0x68", "position_mm": [15, 0, 36] },
+    { "ref": "U4", "type": "VL53L0X", "i2c_addr": "0x30", "angle_deg": -60, "position_mm": [71, -59, 20] },
+    { "ref": "U5", "type": "VL53L0X", "i2c_addr": "0x31", "angle_deg": -30, "position_mm": [96, -34, 20] },
+    { "ref": "U6", "type": "VL53L0X", "i2c_addr": "0x32", "angle_deg": 0, "position_mm": [105, 0, 20] },
+    { "ref": "U7", "type": "VL53L0X", "i2c_addr": "0x33", "angle_deg": 30, "position_mm": [96, 34, 20] },
+    { "ref": "U8", "type": "VL53L0X", "i2c_addr": "0x34", "angle_deg": 60, "position_mm": [71, 59, 20] },
+    { "ref": "U9", "type": "ESP32-CAM", "stream_url": "http://192.168.4.2:81/stream", "position_mm": [65, 0, 62] },
+    { "ref": "U10", "type": "LM2596-5.0", "position_mm": [-45, -24, 34] },
+    { "ref": "M1", "type": "JGA25-370_ENC", "side": "left", "cpr": 1440, "position_mm": [18, 66, 11] },
+    { "ref": "M2", "type": "JGA25-370_ENC", "side": "right", "cpr": 1440, "position_mm": [18, -66, 11] },
+    { "ref": "BT1", "type": "2S_18650_PACK", "voltage_v": 7.4, "capacity_mah": 2200, "position_mm": [-22, 0, 15] },
+    { "ref": "SW2", "type": "ESTOP_NC", "gpio": 32, "position_mm": [-85, 45, 38] }
+  ],
+  "connections": [
+    { "net": "I2C_SDA", "pins": ["U1.GPIO21", "U3.SDA", "U4.SDA", "U5.SDA", "U6.SDA", "U7.SDA", "U8.SDA"] },
+    { "net": "I2C_SCL", "pins": ["U1.GPIO22", "U3.SCL", "U4.SCL", "U5.SCL", "U6.SCL", "U7.SCL", "U8.SCL"] },
+    { "net": "PWMA", "pins": ["U1.GPIO25", "U2.PWMA"] },
+    { "net": "AIN1", "pins": ["U1.GPIO26", "U2.AIN1"] },
+    { "net": "AIN2", "pins": ["U1.GPIO27", "U2.AIN2"] },
+    { "net": "PWMB", "pins": ["U1.GPIO19", "U2.PWMB"] },
+    { "net": "BIN1", "pins": ["U1.GPIO18", "U2.BIN1"] },
+    { "net": "BIN2", "pins": ["U1.GPIO23", "U2.BIN2"] },
+    { "net": "STBY", "pins": ["U1.GPIO4", "U2.STBY", "R3.1"] },
+    { "net": "VBAT_ADC", "pins": ["U1.GPIO33", "R1.2", "R2.1", "C1.1"] },
+    { "net": "ESTOP_HW", "pins": ["U1.GPIO32", "SW2.1"] }
+  ]
+}

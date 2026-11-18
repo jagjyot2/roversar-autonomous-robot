@@ -1,0 +1,21 @@
+Ref,Qty,Part,Value_Spec,Package_Footprint,Manufacturer_MPN,Supplier_Notes
+U1,1,ESP32-WROOM-32D DevKit,ESP32 Dual-Core WiFi/BLE MCU,Module_38Pin_DIP,Espressif ESP32-DevKitC-32D,Main robot flight/drive controller
+U2,1,TB6612FNG Dual Motor Driver,1.2A cont / 3.2A peak dual H-bridge,Breakout_16Pin_DIP,Pololu #713 / SparkFun ROB-14451,Drives L/R JGA25-370 motors
+U3,1,MPU6050 6-DoF IMU,GY-521 3-axis Gyro + Accel I2C 0x68,Module_8Pin_SIP,TDK InvenSense MPU-6050,Yaw fusion and rollover tilt cutoff
+U4-U8,5,VL53L0X Time-of-Flight Sensor,Laser ToF 30-2000mm I2C + XSHUT,GY-530_6Pin_Breakout,STMicroelectronics VL53L0X,Reassigned 0x30-0x34 via XSHUT
+U9,1,ESP32-CAM AI-Thinker + OV2640,2MP WiFi MJPEG Camera Module,Module_16Pin_DIP,Ai-Thinker ESP32-CAM,FPV search-and-rescue stream
+U10,1,LM2596S 5V Buck Converter,DC-DC Step-Down 7.4V->5.0V 3A,Module_LM2596_4Pin,TI LM2596SX-5.0,Regulated 5V rail for ESP32 & CAM
+M1-M2,2,JGA25-370 Geared Motor + Encoder,12V 180RPM 34:1 + 1440 CPR Quad Enc,JGA25-370_6Pin_JST,uxcell / CQRobot JGA25-370,Left & Right diff-drive actuators
+BT1,1,2S 18650 Li-Ion Battery Pack,7.4V 2200mAh 10C w/ BMS + XT60,Holder_2S_18650,Samsung INR18650-25R 2S,Primary energy source
+F1,1,Inline Automotive Blade Fuse,5A Fast-Acting 32V + Holder,Fuse_ATO_Inline,Littelfuse 0287005.PXCN,Overcurrent pack protection
+SW1,1,Main Power Rocker Switch,SPST 10A 250V,Panel_15x21mm,Carling R13-112,Master power disconnect
+SW2,1,Emergency Stop Pushbutton,NC Momentary/Latching E-STOP,Panel_16mm_Round,EAO / Generic 16mm NC,GPIO32 failsafe hardware E-STOP
+R1,1,Resistor 22kOhm 1%,1/4W Metal Film,R_Axial_0207,Yageo MFR-25FBF52-22K,VBAT divider top leg
+R2,1,Resistor 10kOhm 1%,1/4W Metal Film,R_Axial_0207,Yageo MFR-25FBF52-10K,VBAT divider bottom leg
+R3-R9,7,Resistor 10kOhm 5%,1/4W Pull-up / Pull-down,R_Axial_0207,Yageo CFR-25JB-52-10K,STBY pulldown & 4x encoder + ESTOP pullups
+R10-R11,2,Resistor 4.7kOhm 5%,1/4W I2C Pull-up,R_Axial_0207,Yageo CFR-25JB-52-4K7,SDA & SCL 400kHz pullups
+C1,1,Ceramic Capacitor 100nF 50V,X7R ADC Filter,C_Disc_5mm,Murata RPE5C1H104,ADC GPIO33 noise bypass
+C2,1,Electrolytic Capacitor 470uF 16V,Bulk 5V Rail Decoupling,CP_Radial_D8mm,Nichicon UFW1C471MPD,Prevents ESP32-CAM TX brownouts
+WH1-WH2,2,Robot Wheel 65mm Rubber Tire,65mm OD x 26mm W w/ 4mm D-hub,Wheel_65x26mm,DFRobot FIT0003,Left & Right drive wheels
+CS1,1,Rear Ball/Swivel Caster,16.5mm Height M3 4-bolt mount,Caster_32x36mm,Pololu #951 / Generic,Rear chassis 3rd contact point
+H1,1,M3 Fastener & Standoff Kit,M3x8/M3x10/M3x28 brass standoffs + M2.5x6,Hardware_M3_Assortment,Generic Stainless/Brass,Mechanical chassis assembly
