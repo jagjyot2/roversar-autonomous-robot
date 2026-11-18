@@ -1,0 +1,25 @@
+{
+  "name": "RoverSAR 5-Channel VL53L0X ToF Array Stub",
+  "author": "Jagjyot Singh",
+  "pins": [
+    "VCC",
+    "GND",
+    "SDA",
+    "SCL",
+    "XSHUT0",
+    "XSHUT1",
+    "XSHUT2",
+    "XSHUT3",
+    "XSHUT4"
+  ],
+  "controls": [
+    {
+      "id": "centerDistanceMm",
+      "label": "Center ToF Distance (mm)",
+      "type": "range",
+      "min": 50,
+      "max": 2000,
+      "step": 10
+    }
+  ]
+}

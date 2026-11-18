@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "author": "Jagjyot Singh",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-mpu6050",
+      "id": "imu",
+      "top": -140,
+      "left": 240,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic",
+      "top": -160,
+      "left": -220,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "estop",
+      "top": 220,
+      "left": -220,
+      "attrs": {
+        "color": "red",
+        "label": "E-STOP (NC)"
+      }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "vbat_pot",
+      "top": 120,
+      "left": -220,
+      "attrs": {
+        "label": "VBAT_2S_DIV"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_pwm_left",
+      "top": 40,
+      "left": 260,
+      "attrs": {
+        "color": "cyan",
+        "label": "L_PWM"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_pwm_right",
+      "top": 100,
+      "left": 260,
+      "attrs": {
+        "color": "green",
+        "label": "R_PWM"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_fault",
+      "top": 160,
+      "left": 260,
+      "attrs": {
+        "color": "red",
+        "label": "FAULT"
+      }
+    },
+    {
+      "type": "chip-quad-encoder",
+      "id": "quad_enc",
+      "top": 260,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "chip-vl53l0x-array",
+      "id": "tof_array",
+      "top": -20,
+      "left": 260,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+
+    [ "imu:VCC", "esp:3V3", "red", [] ],
+    [ "imu:GND", "esp:GND.1", "black", [] ],
+    [ "imu:SDA", "esp:21", "blue", [] ],
+    [ "imu:SCL", "esp:22", "yellow", [] ],
+
+    [ "ultrasonic:VCC", "esp:5V", "red", [] ],
+    [ "ultrasonic:GND", "esp:GND.1", "black", [] ],
+    [ "ultrasonic:TRIG", "esp:15", "orange", [] ],
+    [ "ultrasonic:ECHO", "esp:12", "purple", [] ],
+
+    [ "estop:1.l", "esp:32", "red", [] ],
+    [ "estop:2.l", "esp:GND.1", "black", [] ],
+
+    [ "vbat_pot:VCC", "esp:3V3", "red", [] ],
+    [ "vbat_pot:GND", "esp:GND.1", "black", [] ],
+    [ "vbat_pot:SIG", "esp:33", "green", [] ],
+
+    [ "led_pwm_left:A", "esp:25", "cyan", [] ],
+    [ "led_pwm_left:C", "esp:GND.2", "black", [] ],
+    [ "led_pwm_right:A", "esp:19", "green", [] ],
+    [ "led_pwm_right:C", "esp:GND.2", "black", [] ],
+    [ "led_fault:A", "esp:2", "red", [] ],
+    [ "led_fault:C", "esp:GND.2", "black", [] ],
+
+    [ "quad_enc:VCC", "esp:3V3", "red", [] ],
+    [ "quad_enc:GND", "esp:GND.2", "black", [] ],
+    [ "quad_enc:PWMA", "esp:25", "cyan", [] ],
+    [ "quad_enc:AIN1", "esp:26", "blue", [] ],
+    [ "quad_enc:AIN2", "esp:27", "blue", [] ],
+    [ "quad_enc:PWMB", "esp:19", "green", [] ],
+    [ "quad_enc:BIN1", "esp:18", "green", [] ],
+    [ "quad_enc:BIN2", "esp:23", "green", [] ],
+    [ "quad_enc:STBY", "esp:4", "orange", [] ],
+    [ "quad_enc:ENC_LA", "esp:34", "violet", [] ],
+    [ "quad_enc:ENC_LB", "esp:35", "violet", [] ],
+    [ "quad_enc:ENC_RA", "esp:36", "gold", [] ],
+    [ "quad_enc:ENC_RB", "esp:39", "gold", [] ],
+
+    [ "tof_array:VCC", "esp:3V3", "red", [] ],
+    [ "tof_array:GND", "esp:GND.2", "black", [] ],
+    [ "tof_array:SDA", "esp:21", "blue", [] ],
+    [ "tof_array:SCL", "esp:22", "yellow", [] ],
+    [ "tof_array:XSHUT0", "esp:13", "gray", [] ],
+    [ "tof_array:XSHUT1", "esp:14", "gray", [] ],
+    [ "tof_array:XSHUT2", "esp:16", "gray", [] ],
+    [ "tof_array:XSHUT3", "esp:17", "gray", [] ],
+    [ "tof_array:XSHUT4", "esp:5", "gray", [] ]
+  ],
+  "dependencies": {}
+}

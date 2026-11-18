@@ -1,0 +1,37 @@
+{
+  "name": "RoverSAR Quadrature Encoder & TB6612FNG Stub",
+  "author": "Jagjyot Singh",
+  "pins": [
+    "VCC",
+    "GND",
+    "PWMA",
+    "AIN1",
+    "AIN2",
+    "PWMB",
+    "BIN1",
+    "BIN2",
+    "STBY",
+    "ENC_LA",
+    "ENC_LB",
+    "ENC_RA",
+    "ENC_RB"
+  ],
+  "controls": [
+    {
+      "id": "leftSpeedScale",
+      "label": "Left Motor Speed Scale (%)",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "id": "rightSpeedScale",
+      "label": "Right Motor Speed Scale (%)",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 5
+    }
+  ]
+}

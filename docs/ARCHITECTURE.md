@@ -50,3 +50,14 @@ flowchart LR
 - **Physics & Raycasting**: `RoverSimulationEngine` executes at `50 Hz`, simulating first-order motor inertia (`τ = 75 ms`), quadrature encoder counts, 5-beam raycasting against indoor SAR walls/rubble, and 2D Bayesian occupancy grid mapping (`100×100` cells @ `0.10 m`).
 - **FPV Camera Stream**: `simulator/camera_feed.py` raycasts a 64° horizontal FOV perspective corridor view with survivor beacon markers and overlays real-time ToF clearance and fault telemetry into JPEG/MJPEG streams.
 - **Ground Station HUD**: Compiled React 18 + TypeScript + Vite bundle served directly at `/` by FastAPI, featuring touch + WASD driving, interactive map click-to-waypoint, live laser scan & occupancy canvas, RPM/battery/watchdog gauges, E-STOP, and **Simulate Comm Loss** button.
+
+## 4. Simulator-Independent HAL & Wokwi Architecture (`simulation/` & `wokwi/`)
+RoverSAR decouples its firmware/control contracts from any single simulator backend via the canonical HAL in `simulation/adapters/common/rover_hal_interface.h` and `rover_hal_interface.py` (`RoverHalProtocol`).
+
+- **Active Microcontroller Simulator — Wokwi (`wokwi/` + `simulation/adapters/wokwi/`)**:
+  - `wokwi/wokwi.toml` loads the PlatformIO-compiled `firmware/.pio/build/esp32dev/firmware.bin` and `firmware.elf`.
+  - **Natively supported in Wokwi**: `board-esp32-devkit-c-v4`, `wokwi-mpu6050` (`GPIO21/22`), `wokwi-hc-sr04` (`GPIO15/12`), `wokwi-pushbutton` NC E-STOP (`GPIO32`), `wokwi-potentiometer` 2S battery divider (`GPIO33`), and `wokwi-led` PWM/fault indicators (`GPIO25/19/2`).
+  - **Unsupported natively (Custom Chip Stubs + 50 Hz Python Harness, never silently substituted)**: 5-channel `VL53L0X` ToF array (`chip-vl53l0x-array`), `TB6612FNG` + 1440 CPR quadrature encoders (`chip-quad-encoder`), and `ESP32-CAM` MJPEG stream (`simulator/camera_feed.py`). See `simulation/documentation/COMPONENT-SUPPORT-MATRIX.md`.
+- **Preserved BenchTwin Adapter (`benchtwin/` + `simulation/adapters/benchtwin/`)**:
+  - All BenchTwin assets (`roversar.btw`, `roversar-benchtwin.json`, `roversar.net`, `BOM.csv`, `roversar_base_plate.stl`) remain intact with `status: "preserved_dormant"` in `benchtwin_adapter_manifest.json`.
+  - **Reactivation**: Open `benchtwin/roversar.btw` in BenchTwin, implement `RoverHalProtocol` in `simulation/adapters/benchtwin/`, and switch the active simulator profile from `wokwi` to `benchtwin`.

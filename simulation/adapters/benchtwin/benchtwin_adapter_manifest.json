@@ -1,0 +1,22 @@
+{
+  "schema": "roversar/adapter-manifest/v1",
+  "adapter_id": "benchtwin",
+  "status": "preserved_dormant",
+  "active_simulator": "wokwi",
+  "benchtwin_root": "../../../benchtwin",
+  "artifacts": {
+    "project_file": "../../../benchtwin/roversar.btw",
+    "manifest": "../../../benchtwin/roversar-benchtwin.json",
+    "netlist": "../../../benchtwin/roversar.net",
+    "bom": "../../../benchtwin/BOM.csv",
+    "chassis_stl": "../../../benchtwin/roversar_base_plate.stl",
+    "notes": "../../../benchtwin/BENCHTWIN-SIMULATION-NOTES.md"
+  },
+  "hal_interface": "../common/rover_hal_interface.py",
+  "reactivation_steps": [
+    "Open benchtwin/roversar.btw in BenchTwin HIL Studio.",
+    "Verify roversar-benchtwin.json power rails (VBAT_FUSED, V5_REG, V3_3) and netlist roversar.net.",
+    "Bind BenchTwin HIL pins to RoverHalProtocol in simulation/adapters/benchtwin/.",
+    "Set active_simulator to 'benchtwin' in deployment configuration."
+  ]
+}

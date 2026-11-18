@@ -43,11 +43,15 @@ Open **`http://localhost:8050`** on desktop or mobile:
 pytest -v
 ```
 
-### 3. Build ESP32 Firmware (`firmware/`)
+### 3. Build ESP32 Firmware (`firmware/`) & Run Wokwi Simulation (`wokwi/`)
 ```bash
 cd firmware
 pio run
 ```
+Once built, `wokwi/wokwi.toml` points directly to `firmware/.pio/build/esp32dev/firmware.bin` and `firmware.elf`.
+- **VS Code Wokwi Extension**: Open `wokwi/diagram.json` and run **Wokwi: Start Simulator**.
+- **Wokwi CLI**: Set `WOKWI_CLI_TOKEN` and run `wokwi-cli` inside `wokwi/` (see [`wokwi/README.md`](./wokwi/README.md)).
+- **Supported vs. Stubbed Components**: `ESP32-WROOM-32D`, `MPU6050`, `HC-SR04`, `NC E-STOP`, `2S VBAT divider`, and PWM/fault LEDs are natively modeled in Wokwi; the 5-ch `VL53L0X` array, `TB6612FNG` + 1440 CPR quadrature encoders, and `ESP32-CAM` use custom Wokwi chip stubs paired with the 50 Hz Python physics harness (see [`simulation/documentation/COMPONENT-SUPPORT-MATRIX.md`](./simulation/documentation/COMPONENT-SUPPORT-MATRIX.md)).
 
 ### 4. Rebuild React + TypeScript Dashboard (`dashboard/`)
 ```bash
@@ -64,7 +68,9 @@ npm run build
 - `dashboard/` — React + TypeScript + Vite responsive dark-mode ground control UI (`dist/` served at `/`)
 - `cad/` — OpenSCAD `.scad` sources, reproducible STL builder, and binary `.stl` meshes
 - `hardware/` — `CHASSIS-DESIGN.md`, `WIRING-DIAGRAM.md`, `roversar.kicad_sch`, `roversar.net`, `BOM.csv`
-- `benchtwin/` — BenchTwin hardware-in-the-loop staging package (`roversar.btw`, manifest, netlist, BOM, STL)
+- `simulation/` — Simulator-independent HAL (`adapters/common/`), active `wokwi/` adapter, preserved `benchtwin/` manifest, fault/navigation `scenarios/`, and `COMPONENT-SUPPORT-MATRIX.md`
+- `wokwi/` — Active Wokwi ESP32 diagram (`diagram.json`), `wokwi.toml`, and custom chip stubs (`chip-quad-encoder`, `chip-vl53l0x-array`)
+- `benchtwin/` — Preserved BenchTwin hardware-in-the-loop staging package (`roversar.btw`, manifest, netlist, BOM, STL) for future reactivation
 - `tests/` — Automated pytest suite covering kinematics, PID, odometry/mapping, wall avoidance, 500 ms failsafe, FastAPI/WS, STL, KiCad & BenchTwin validation
 - `docs/ARCHITECTURE.md` & `ROADMAP.md` — System architecture & future engineering roadmap
 
