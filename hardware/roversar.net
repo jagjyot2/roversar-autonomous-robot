@@ -1,100 +1,5199 @@
-(export (version "E")
-  (design
-    (source "roversar.kicad_sch")
-    (date "2026-11-18T08:30:00+0530")
-    (tool "Eeschema 8.0")
-    (sheet (number "1") (name "/") (tstamps "/")
-      (title_block
-        (title "RoverSAR Autonomous Search & Rescue Robot Carrier")
-        (company "Jagjyot Engineering Portfolio")
-        (rev "1.0")
-      )
-    )
-  )
-  (components
-    (comp (ref "U1") (value "ESP32-WROOM-32D") (footprint "Module_38Pin_DIP"))
-    (comp (ref "U2") (value "TB6612FNG") (footprint "Breakout_16Pin_DIP"))
-    (comp (ref "U3") (value "MPU6050") (footprint "Module_8Pin_SIP"))
-    (comp (ref "U4") (value "VL53L0X_0") (footprint "GY-530_6Pin_Breakout"))
-    (comp (ref "U5") (value "VL53L0X_1") (footprint "GY-530_6Pin_Breakout"))
-    (comp (ref "U6") (value "VL53L0X_2") (footprint "GY-530_6Pin_Breakout"))
-    (comp (ref "U7") (value "VL53L0X_3") (footprint "GY-530_6Pin_Breakout"))
-    (comp (ref "U8") (value "VL53L0X_4") (footprint "GY-530_6Pin_Breakout"))
-    (comp (ref "U9") (value "ESP32-CAM") (footprint "Module_16Pin_DIP"))
-    (comp (ref "U10") (value "LM2596-5.0") (footprint "Module_LM2596_4Pin"))
-    (comp (ref "M1") (value "JGA25-370_LEFT") (footprint "JGA25-370_6Pin_JST"))
-    (comp (ref "M2") (value "JGA25-370_RIGHT") (footprint "JGA25-370_6Pin_JST"))
-    (comp (ref "BT1") (value "2S_18650_7V4") (footprint "Holder_2S_18650"))
-    (comp (ref "F1") (value "5A_ATO") (footprint "Fuse_ATO_Inline"))
-    (comp (ref "SW1") (value "MAIN_PWR_SW") (footprint "Panel_15x21mm"))
-    (comp (ref "SW2") (value "ESTOP_NC_SW") (footprint "Panel_16mm_Round"))
-    (comp (ref "R1") (value "22k") (footprint "R_Axial_0207"))
-    (comp (ref "R2") (value "10k") (footprint "R_Axial_0207"))
-    (comp (ref "R3") (value "10k") (footprint "R_Axial_0207"))
-    (comp (ref "C1") (value "100nF") (footprint "C_Disc_5mm"))
-    (comp (ref "C2") (value "470uF") (footprint "CP_Radial_D8mm"))
-  )
-  (nets
-    (net (code "1") (name "GND")
-      (node (ref "BT1") (pin "2")) (node (ref "U1") (pin "3")) (node (ref "U2") (pin "14"))
-      (node (ref "U3") (pin "2")) (node (ref "U4") (pin "2")) (node (ref "U5") (pin "2"))
-      (node (ref "U6") (pin "2")) (node (ref "U7") (pin "2")) (node (ref "U8") (pin "2"))
-      (node (ref "U9") (pin "2")) (node (ref "U10") (pin "2")) (node (ref "SW2") (pin "2"))
-      (node (ref "R2") (pin "2")) (node (ref "R3") (pin "2")) (node (ref "C1") (pin "2")) (node (ref "C2") (pin "2"))
-    )
-    (net (code "2") (name "VBAT_RAW")
-      (node (ref "BT1") (pin "1")) (node (ref "F1") (pin "1"))
-    )
-    (net (code "3") (name "VBAT_SW")
-      (node (ref "F1") (pin "2")) (node (ref "SW1") (pin "1"))
-    )
-    (net (code "4") (name "VBAT_FUSED")
-      (node (ref "SW1") (pin "2")) (node (ref "U2") (pin "1")) (node (ref "U10") (pin "1")) (node (ref "R1") (pin "1"))
-    )
-    (net (code "5") (name "V5_REG")
-      (node (ref "U10") (pin "3")) (node (ref "U1") (pin "1")) (node (ref "U9") (pin "1")) (node (ref "C2") (pin "1"))
-      (node (ref "M1") (pin "3")) (node (ref "M2") (pin "3"))
-    )
-    (net (code "6") (name "V3_3")
-      (node (ref "U1") (pin "2")) (node (ref "U2") (pin "2")) (node (ref "U3") (pin "1"))
-      (node (ref "U4") (pin "1")) (node (ref "U5") (pin "1")) (node (ref "U6") (pin "1"))
-      (node (ref "U7") (pin "1")) (node (ref "U8") (pin "1"))
-    )
-    (net (code "7") (name "VBAT_ADC")
-      (node (ref "U1") (pin "6")) (node (ref "R1") (pin "2")) (node (ref "R2") (pin "1")) (node (ref "C1") (pin "1"))
-    )
-    (net (code "8") (name "ESTOP_HW")
-      (node (ref "U1") (pin "7")) (node (ref "SW2") (pin "1"))
-    )
-    (net (code "9") (name "I2C_SDA")
-      (node (ref "U1") (pin "4")) (node (ref "U3") (pin "4"))
-      (node (ref "U4") (pin "4")) (node (ref "U5") (pin "4")) (node (ref "U6") (pin "4"))
-      (node (ref "U7") (pin "4")) (node (ref "U8") (pin "4"))
-    )
-    (net (code "10") (name "I2C_SCL")
-      (node (ref "U1") (pin "5")) (node (ref "U3") (pin "3"))
-      (node (ref "U4") (pin "3")) (node (ref "U5") (pin "3")) (node (ref "U6") (pin "3"))
-      (node (ref "U7") (pin "3")) (node (ref "U8") (pin "3"))
-    )
-    (net (code "11") (name "PWMA") (node (ref "U1") (pin "12")) (node (ref "U2") (pin "3")))
-    (net (code "12") (name "AIN1") (node (ref "U1") (pin "13")) (node (ref "U2") (pin "4")))
-    (net (code "13") (name "AIN2") (node (ref "U1") (pin "14")) (node (ref "U2") (pin "5")))
-    (net (code "14") (name "PWMB") (node (ref "U1") (pin "15")) (node (ref "U2") (pin "7")))
-    (net (code "15") (name "BIN1") (node (ref "U1") (pin "16")) (node (ref "U2") (pin "8")))
-    (net (code "16") (name "BIN2") (node (ref "U1") (pin "17")) (node (ref "U2") (pin "9")))
-    (net (code "17") (name "STBY") (node (ref "U1") (pin "18")) (node (ref "U2") (pin "6")) (node (ref "R3") (pin "1")))
-    (net (code "18") (name "MOTOR_L_P") (node (ref "U2") (pin "10")) (node (ref "M1") (pin "1")))
-    (net (code "19") (name "MOTOR_L_N") (node (ref "U2") (pin "11")) (node (ref "M1") (pin "2")))
-    (net (code "20") (name "MOTOR_R_P") (node (ref "U2") (pin "12")) (node (ref "M2") (pin "1")))
-    (net (code "21") (name "MOTOR_R_N") (node (ref "U2") (pin "13")) (node (ref "M2") (pin "2")))
-    (net (code "22") (name "ENC_LA") (node (ref "U1") (pin "8")) (node (ref "M1") (pin "5")))
-    (net (code "23") (name "ENC_LB") (node (ref "U1") (pin "9")) (node (ref "M1") (pin "6")))
-    (net (code "24") (name "ENC_RA") (node (ref "U1") (pin "10")) (node (ref "M2") (pin "5")))
-    (net (code "25") (name "ENC_RB") (node (ref "U1") (pin "11")) (node (ref "M2") (pin "6")))
-    (net (code "26") (name "TOF_XSHUT0") (node (ref "U1") (pin "19")) (node (ref "U4") (pin "5")))
-    (net (code "27") (name "TOF_XSHUT1") (node (ref "U1") (pin "20")) (node (ref "U5") (pin "5")))
-    (net (code "28") (name "TOF_XSHUT2") (node (ref "U1") (pin "21")) (node (ref "U6") (pin "5")))
-    (net (code "29") (name "TOF_XSHUT3") (node (ref "U1") (pin "22")) (node (ref "U7") (pin "5")))
-    (net (code "30") (name "TOF_XSHUT4") (node (ref "U1") (pin "23")) (node (ref "U8") (pin "5")))
-  )
+(export
+	(version "E")
+	(design
+		(source "S:\\Projects\\Multi projects\\ENGINEERING-PORTFOLIO\\05-ROVERSAR\\hardware\\roversar.kicad_sch")
+		(date "2026-11-18T18:45:13")
+		(tool "Eeschema 10.0.8")
+		(sheet
+			(number "1")
+			(name "/")
+			(tstamps "/")
+			(title_block
+				(title "RoverSAR Autonomous Search & Rescue Robot Carrier")
+				(company "Jagjyot Engineering Portfolio")
+				(rev "1.1")
+				(date "2026-11-18")
+				(source "roversar.kicad_sch")
+				(comment
+					(number "1")
+					(value "")
+				)
+				(comment
+					(number "2")
+					(value "")
+				)
+				(comment
+					(number "3")
+					(value "")
+				)
+				(comment
+					(number "4")
+					(value "")
+				)
+				(comment
+					(number "5")
+					(value "")
+				)
+				(comment
+					(number "6")
+					(value "")
+				)
+				(comment
+					(number "7")
+					(value "")
+				)
+				(comment
+					(number "8")
+					(value "")
+				)
+				(comment
+					(number "9")
+					(value "")
+				)
+			)
+		)
+	)
+	(components
+		(comp
+			(ref "C1")
+			(value "100nF")
+			(footprint "RoverSAR:SMD_0805")
+			(fields
+				(field
+					(name "Rating") "50V")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_C1_100nF")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "50V")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "a59ad153-b3f7-591b-9067-588afaca5c22")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C2")
+			(value "470uF_16V")
+			(footprint "RoverSAR:CP_Radial_D8mm")
+			(fields
+				(field
+					(name "Rating") "16V / 470uF")
+				(field
+					(name "Footprint") "RoverSAR:CP_Radial_D8mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_C2_470uF_16V")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "16V / 470uF")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "cc3cef12-3939-5dac-a73a-a1ccbdb5d3a8")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C3")
+			(value "100nF")
+			(footprint "RoverSAR:SMD_0805")
+			(fields
+				(field
+					(name "Rating") "25V")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_C3_100nF")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "25V")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "8f8ccab8-0832-59a0-9e3b-e1644224fdaa")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C4")
+			(value "100nF")
+			(footprint "RoverSAR:SMD_0805")
+			(fields
+				(field
+					(name "Rating") "25V")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_C4_100nF")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "25V")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "9e56e418-7c59-5a3a-b803-ef168dc46f59")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C5")
+			(value "100nF")
+			(footprint "RoverSAR:SMD_0805")
+			(fields
+				(field
+					(name "Rating") "25V")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_C5_100nF")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "25V")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "c4b403ed-8fd0-5373-adbc-33cb6f567a8d")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C6")
+			(value "100nF")
+			(footprint "RoverSAR:SMD_0805")
+			(fields
+				(field
+					(name "Rating") "25V")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_C6_100nF")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "25V")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "3904b0da-f20a-5cbf-a984-9dd8311bad5c")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C7")
+			(value "100nF")
+			(footprint "RoverSAR:SMD_0805")
+			(fields
+				(field
+					(name "Rating") "25V")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_C7_100nF")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "25V")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "f20c9579-7db8-5fcc-a3b5-98baa92998ce")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C8")
+			(value "100nF")
+			(footprint "RoverSAR:SMD_0805")
+			(fields
+				(field
+					(name "Rating") "25V")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_C8_100nF")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "25V")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "6a714865-9ec7-555f-aaa7-994fe944f1b5")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "D1")
+			(value "SMBJ28A_TVS")
+			(footprint "RoverSAR:D_SMB")
+			(fields
+				(field
+					(name "MPN") "SMBJ28A")
+				(field
+					(name "Rating") "28V / 600W")
+				(field
+					(name "Footprint") "RoverSAR:D_SMB")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_D1_SMBJ28A_TVS")
+				(description "")
+			)
+			(property
+				(name "MPN")
+				(value "SMBJ28A")
+			)
+			(property
+				(name "Rating")
+				(value "28V / 600W")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "bc4eeb02-449a-5a7c-b66a-5321ec4abc07")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "D2")
+			(value "STATUS_LED")
+			(footprint "RoverSAR:SMD_0805")
+			(fields
+				(field
+					(name "MPN") "LED-0805")
+				(field
+					(name "Rating") "2.1V / 20mA")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_D2_STATUS_LED")
+				(description "")
+			)
+			(property
+				(name "MPN")
+				(value "LED-0805")
+			)
+			(property
+				(name "Rating")
+				(value "2.1V / 20mA")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "e8c7b58f-b423-5aa5-bd3f-1dcb529b043f")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "F1")
+			(value "5A_ATO_FUSE")
+			(footprint "RoverSAR:PinHeader_1x02_P2.54mm")
+			(fields
+				(field
+					(name "MPN") "0287005")
+				(field
+					(name "Rating") "32V / 5A")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x02_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_F1_5A_ATO_FUSE")
+				(description "")
+			)
+			(property
+				(name "MPN")
+				(value "0287005")
+			)
+			(property
+				(name "Rating")
+				(value "32V / 5A")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "9aefd8ee-56d6-5689-98b3-190cc0cea6b9")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "H1")
+			(value "M3_Mount")
+			(footprint "RoverSAR:MountingHole_3.2mm_M3_Pad_Via")
+			(fields
+				(field
+					(name "Rating") "M3")
+				(field
+					(name "Footprint") "RoverSAR:MountingHole_3.2mm_M3_Pad_Via")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_H1_M3_Mount")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "M3")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "d30a9b16-693b-598c-bb9a-a07bad9aaf42")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "H2")
+			(value "M3_Mount")
+			(footprint "RoverSAR:MountingHole_3.2mm_M3_Pad_Via")
+			(fields
+				(field
+					(name "Rating") "M3")
+				(field
+					(name "Footprint") "RoverSAR:MountingHole_3.2mm_M3_Pad_Via")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_H2_M3_Mount")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "M3")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "83d3b806-8c75-5042-b925-23a79e7af127")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "H3")
+			(value "M3_Mount")
+			(footprint "RoverSAR:MountingHole_3.2mm_M3_Pad_Via")
+			(fields
+				(field
+					(name "Rating") "M3")
+				(field
+					(name "Footprint") "RoverSAR:MountingHole_3.2mm_M3_Pad_Via")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_H3_M3_Mount")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "M3")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "20a55e46-48b6-5077-a857-9fad705ab4f5")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "H4")
+			(value "M3_Mount")
+			(footprint "RoverSAR:MountingHole_3.2mm_M3_Pad_Via")
+			(fields
+				(field
+					(name "Rating") "M3")
+				(field
+					(name "Footprint") "RoverSAR:MountingHole_3.2mm_M3_Pad_Via")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_H4_M3_Mount")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "M3")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "b3155e67-7587-59d8-88f4-484f4b89726b")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "J1")
+			(value "XT60_2S_BAT")
+			(footprint "RoverSAR:AMASS_XT60_Vertical")
+			(fields
+				(field
+					(name "MPN") "XT60-M")
+				(field
+					(name "Rating") "2S 7.4V / 30A")
+				(field
+					(name "Footprint") "RoverSAR:AMASS_XT60_Vertical")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_J1_XT60_2S_BAT")
+				(description "")
+			)
+			(property
+				(name "MPN")
+				(value "XT60-M")
+			)
+			(property
+				(name "Rating")
+				(value "2S 7.4V / 30A")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "1f398d9e-8546-593f-adbc-d1a67c212dc5")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "M1")
+			(value "JGA25-370_LEFT")
+			(footprint "RoverSAR:PinHeader_1x06_P2.54mm")
+			(fields
+				(field
+					(name "MPN") "JGA25-370")
+				(field
+					(name "Manufacturer") "Generic")
+				(field
+					(name "Rating") "7.4V / 1.5A")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x06_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_M1_JGA25_370_LEFT")
+				(description "")
+			)
+			(property
+				(name "MPN")
+				(value "JGA25-370")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Generic")
+			)
+			(property
+				(name "Rating")
+				(value "7.4V / 1.5A")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "036ae1ff-585b-5746-9238-646ba7a106b1")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "6")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "M2")
+			(value "JGA25-370_RIGHT")
+			(footprint "RoverSAR:PinHeader_1x06_P2.54mm")
+			(fields
+				(field
+					(name "MPN") "JGA25-370")
+				(field
+					(name "Manufacturer") "Generic")
+				(field
+					(name "Rating") "7.4V / 1.5A")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x06_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_M2_JGA25_370_RIGHT")
+				(description "")
+			)
+			(property
+				(name "MPN")
+				(value "JGA25-370")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Generic")
+			)
+			(property
+				(name "Rating")
+				(value "7.4V / 1.5A")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "9a2a4d71-0de5-527f-a366-0928605d948e")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "6")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R1")
+			(value "22k")
+			(footprint "RoverSAR:SMD_0805")
+			(fields
+				(field
+					(name "Rating") "50V / 0.125W")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_R1_22k")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "50V / 0.125W")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "3c75f375-588d-5b1d-b92b-a13846fe8bb8")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R2")
+			(value "10k")
+			(footprint "RoverSAR:SMD_0805")
+			(fields
+				(field
+					(name "Rating") "50V / 0.125W")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_R2_10k")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "50V / 0.125W")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "5b9dae59-9be9-5efe-b2db-184d88f8a121")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R3")
+			(value "10k")
+			(footprint "RoverSAR:SMD_0805")
+			(fields
+				(field
+					(name "Rating") "50V / 0.125W")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_R3_10k")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "50V / 0.125W")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "8a964779-79d6-538e-bd4e-19410ebda52a")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R4")
+			(value "4.7k")
+			(footprint "RoverSAR:SMD_0805")
+			(fields
+				(field
+					(name "Rating") "50V / 0.125W")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_R4_4_7k")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "50V / 0.125W")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "beaeb81f-8fac-5846-95df-fc628c574fa5")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R5")
+			(value "4.7k")
+			(footprint "RoverSAR:SMD_0805")
+			(fields
+				(field
+					(name "Rating") "50V / 0.125W")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_R5_4_7k")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "50V / 0.125W")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "064db72b-6d91-5840-9cf1-d5648cffce53")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R6")
+			(value "10k")
+			(footprint "RoverSAR:SMD_0805")
+			(fields
+				(field
+					(name "Rating") "50V / 0.125W")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_R6_10k")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "50V / 0.125W")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "9d8f2100-e569-5027-923d-f562ffef825a")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R7")
+			(value "10k")
+			(footprint "RoverSAR:SMD_0805")
+			(fields
+				(field
+					(name "Rating") "50V / 0.125W")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_R7_10k")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "50V / 0.125W")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "eed44f6f-2840-5399-85ea-6bc447b0aa2d")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R8")
+			(value "10k")
+			(footprint "RoverSAR:SMD_0805")
+			(fields
+				(field
+					(name "Rating") "50V / 0.125W")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_R8_10k")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "50V / 0.125W")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "647df882-fe36-502e-b4a1-2562e1a6abea")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R9")
+			(value "10k")
+			(footprint "RoverSAR:SMD_0805")
+			(fields
+				(field
+					(name "Rating") "50V / 0.125W")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_R9_10k")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "50V / 0.125W")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "b7fdad55-b174-5fb1-a159-efbe7304eb66")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R10")
+			(value "10k")
+			(footprint "RoverSAR:SMD_0805")
+			(fields
+				(field
+					(name "Rating") "50V / 0.125W")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_R10_10k")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "50V / 0.125W")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "357fa65c-6451-5641-8fa3-52bc5424962a")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R11")
+			(value "330R")
+			(footprint "RoverSAR:SMD_0805")
+			(fields
+				(field
+					(name "Rating") "50V / 0.125W")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_R11_330R")
+				(description "")
+			)
+			(property
+				(name "Rating")
+				(value "50V / 0.125W")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "a70f9ae4-0f28-58a6-bcab-eed048d3b3d4")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "SW1")
+			(value "MAIN_PWR_SW")
+			(footprint "RoverSAR:PinHeader_1x02_P2.54mm")
+			(fields
+				(field
+					(name "MPN") "R13-112")
+				(field
+					(name "Rating") "10A")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x02_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_SW1_MAIN_PWR_SW")
+				(description "")
+			)
+			(property
+				(name "MPN")
+				(value "R13-112")
+			)
+			(property
+				(name "Rating")
+				(value "10A")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "e2dbed51-7187-59d8-96f9-569235d3fddb")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "SW2")
+			(value "ESTOP_NC_SW")
+			(footprint "RoverSAR:PinHeader_1x02_P2.54mm")
+			(fields
+				(field
+					(name "MPN") "ESTOP-16MM")
+				(field
+					(name "Rating") "3.3V Logic")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x02_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_SW2_ESTOP_NC_SW")
+				(description "")
+			)
+			(property
+				(name "MPN")
+				(value "ESTOP-16MM")
+			)
+			(property
+				(name "Rating")
+				(value "3.3V Logic")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "9aee10b8-50bb-5cfe-8b2d-0a68719b98ce")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U1")
+			(value "ESP32-WROOM-32D")
+			(footprint "RoverSAR:ESP32_DevKit_30P")
+			(fields
+				(field
+					(name "MPN") "ESP32-DevKitC-32D")
+				(field
+					(name "Manufacturer") "Espressif")
+				(field
+					(name "Rating") "3.3V IO / 5V VIN")
+				(field
+					(name "Footprint") "RoverSAR:ESP32_DevKit_30P")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_U1_ESP32_WROOM_32D")
+				(description "")
+			)
+			(property
+				(name "MPN")
+				(value "ESP32-DevKitC-32D")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Espressif")
+			)
+			(property
+				(name "Rating")
+				(value "3.3V IO / 5V VIN")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "c0fdfce8-4fe3-5db2-9b86-3f7ea42e15f7")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "10")
+						)
+						(pin
+							(num "11")
+						)
+						(pin
+							(num "12")
+						)
+						(pin
+							(num "13")
+						)
+						(pin
+							(num "14")
+						)
+						(pin
+							(num "15")
+						)
+						(pin
+							(num "16")
+						)
+						(pin
+							(num "17")
+						)
+						(pin
+							(num "18")
+						)
+						(pin
+							(num "19")
+						)
+						(pin
+							(num "20")
+						)
+						(pin
+							(num "21")
+						)
+						(pin
+							(num "22")
+						)
+						(pin
+							(num "23")
+						)
+						(pin
+							(num "24")
+						)
+						(pin
+							(num "25")
+						)
+						(pin
+							(num "26")
+						)
+						(pin
+							(num "27")
+						)
+						(pin
+							(num "28")
+						)
+						(pin
+							(num "29")
+						)
+						(pin
+							(num "30")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U2")
+			(value "TB6612FNG")
+			(footprint "RoverSAR:Breakout_16Pin_DIP")
+			(fields
+				(field
+					(name "MPN") "TB6612FNG")
+				(field
+					(name "Manufacturer") "Toshiba / Pololu")
+				(field
+					(name "Rating") "15V / 1.2A cont (3.2A peak)")
+				(field
+					(name "Footprint") "RoverSAR:Breakout_16Pin_DIP")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_U2_TB6612FNG")
+				(description "")
+			)
+			(property
+				(name "MPN")
+				(value "TB6612FNG")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Toshiba / Pololu")
+			)
+			(property
+				(name "Rating")
+				(value "15V / 1.2A cont (3.2A peak)")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "d07253ae-f9d2-5576-85b7-70dc5c508106")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "10")
+						)
+						(pin
+							(num "11")
+						)
+						(pin
+							(num "12")
+						)
+						(pin
+							(num "13")
+						)
+						(pin
+							(num "14")
+						)
+						(pin
+							(num "15")
+						)
+						(pin
+							(num "16")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U3")
+			(value "MPU6050-GY521")
+			(footprint "RoverSAR:PinHeader_1x04_P2.54mm")
+			(fields
+				(field
+					(name "MPN") "GY-521")
+				(field
+					(name "Manufacturer") "InvenSense")
+				(field
+					(name "Rating") "3.3V / I2C 0x68")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x04_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_U3_MPU6050_GY521")
+				(description "")
+			)
+			(property
+				(name "MPN")
+				(value "GY-521")
+			)
+			(property
+				(name "Manufacturer")
+				(value "InvenSense")
+			)
+			(property
+				(name "Rating")
+				(value "3.3V / I2C 0x68")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "4630b22e-464c-5dc9-bb7c-fab6064a6e76")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U4")
+			(value "VL53L0X_0")
+			(footprint "RoverSAR:PinHeader_1x05_P2.54mm")
+			(fields
+				(field
+					(name "MPN") "GY-530")
+				(field
+					(name "Manufacturer") "STMicroelectronics")
+				(field
+					(name "Rating") "3.3V / I2C")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x05_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_U4_VL53L0X_0")
+				(description "")
+			)
+			(property
+				(name "MPN")
+				(value "GY-530")
+			)
+			(property
+				(name "Manufacturer")
+				(value "STMicroelectronics")
+			)
+			(property
+				(name "Rating")
+				(value "3.3V / I2C")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "2b81f420-0494-5d4b-88b0-cdc8cf1a313f")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U5")
+			(value "VL53L0X_1")
+			(footprint "RoverSAR:PinHeader_1x05_P2.54mm")
+			(fields
+				(field
+					(name "MPN") "GY-530")
+				(field
+					(name "Manufacturer") "STMicroelectronics")
+				(field
+					(name "Rating") "3.3V / I2C")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x05_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_U5_VL53L0X_1")
+				(description "")
+			)
+			(property
+				(name "MPN")
+				(value "GY-530")
+			)
+			(property
+				(name "Manufacturer")
+				(value "STMicroelectronics")
+			)
+			(property
+				(name "Rating")
+				(value "3.3V / I2C")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "a89faa01-35f5-5192-8943-25d2a0a42fdb")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U6")
+			(value "VL53L0X_2")
+			(footprint "RoverSAR:PinHeader_1x05_P2.54mm")
+			(fields
+				(field
+					(name "MPN") "GY-530")
+				(field
+					(name "Manufacturer") "STMicroelectronics")
+				(field
+					(name "Rating") "3.3V / I2C")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x05_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_U6_VL53L0X_2")
+				(description "")
+			)
+			(property
+				(name "MPN")
+				(value "GY-530")
+			)
+			(property
+				(name "Manufacturer")
+				(value "STMicroelectronics")
+			)
+			(property
+				(name "Rating")
+				(value "3.3V / I2C")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "f337b3d4-61fb-5cad-93eb-3ac2aa5745d0")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U7")
+			(value "VL53L0X_3")
+			(footprint "RoverSAR:PinHeader_1x05_P2.54mm")
+			(fields
+				(field
+					(name "MPN") "GY-530")
+				(field
+					(name "Manufacturer") "STMicroelectronics")
+				(field
+					(name "Rating") "3.3V / I2C")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x05_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_U7_VL53L0X_3")
+				(description "")
+			)
+			(property
+				(name "MPN")
+				(value "GY-530")
+			)
+			(property
+				(name "Manufacturer")
+				(value "STMicroelectronics")
+			)
+			(property
+				(name "Rating")
+				(value "3.3V / I2C")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "37526e7e-0328-5ce4-adea-9315c897bc4c")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U8")
+			(value "VL53L0X_4")
+			(footprint "RoverSAR:PinHeader_1x05_P2.54mm")
+			(fields
+				(field
+					(name "MPN") "GY-530")
+				(field
+					(name "Manufacturer") "STMicroelectronics")
+				(field
+					(name "Rating") "3.3V / I2C")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x05_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_U8_VL53L0X_4")
+				(description "")
+			)
+			(property
+				(name "MPN")
+				(value "GY-530")
+			)
+			(property
+				(name "Manufacturer")
+				(value "STMicroelectronics")
+			)
+			(property
+				(name "Rating")
+				(value "3.3V / I2C")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "b4a9f81e-5aee-57af-8a5c-c4a993e19036")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U9")
+			(value "ESP32-CAM")
+			(footprint "RoverSAR:PinHeader_1x02_P2.54mm")
+			(fields
+				(field
+					(name "MPN") "ESP32-CAM")
+				(field
+					(name "Manufacturer") "Ai-Thinker")
+				(field
+					(name "Rating") "5.0V / 500mA")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x02_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_U9_ESP32_CAM")
+				(description "")
+			)
+			(property
+				(name "MPN")
+				(value "ESP32-CAM")
+			)
+			(property
+				(name "Manufacturer")
+				(value "Ai-Thinker")
+			)
+			(property
+				(name "Rating")
+				(value "5.0V / 500mA")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "a46ade43-807b-563d-8fe2-e7273d382bf9")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U10")
+			(value "LM2596-5.0")
+			(footprint "RoverSAR:Buck_4Pin_Module")
+			(fields
+				(field
+					(name "MPN") "LM2596SX-5.0")
+				(field
+					(name "Manufacturer") "TI")
+				(field
+					(name "Rating") "7-35V -> 5V / 3A")
+				(field
+					(name "Footprint") "RoverSAR:Buck_4Pin_Module")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "RoverSAR")
+				(part "SYM_U10_LM2596_5_0")
+				(description "")
+			)
+			(property
+				(name "MPN")
+				(value "LM2596SX-5.0")
+			)
+			(property
+				(name "Manufacturer")
+				(value "TI")
+			)
+			(property
+				(name "Rating")
+				(value "7-35V -> 5V / 3A")
+			)
+			(property
+				(name "Sheetname")
+				(value "roversar")
+			)
+			(property
+				(name "Sheetfile")
+				(value "roversar.kicad_sch")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "c187894c-6eca-5807-a7d6-6b69e4162ff3")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+					)
+				)
+			)
+		)
+	)
+	(groups)
+	(variants)
+	(libparts
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_C1_100nF")
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "100nF")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_C2_470uF_16V")
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "470uF_16V")
+				(field
+					(name "Footprint") "RoverSAR:CP_Radial_D8mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "+")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "-")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_C3_100nF")
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "100nF")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_C4_100nF")
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "100nF")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_C5_100nF")
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "100nF")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_C6_100nF")
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "100nF")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_C7_100nF")
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "100nF")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_C8_100nF")
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "100nF")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_D1_SMBJ28A_TVS")
+			(fields
+				(field
+					(name "Reference") "D")
+				(field
+					(name "Value") "SMBJ28A_TVS")
+				(field
+					(name "Footprint") "RoverSAR:D_SMB")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "K")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "A")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_D2_STATUS_LED")
+			(fields
+				(field
+					(name "Reference") "D")
+				(field
+					(name "Value") "STATUS_LED")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "A")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "K")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_F1_5A_ATO_FUSE")
+			(fields
+				(field
+					(name "Reference") "F")
+				(field
+					(name "Value") "5A_ATO_FUSE")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x02_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_H1_M3_Mount")
+			(fields
+				(field
+					(name "Reference") "H")
+				(field
+					(name "Value") "M3_Mount")
+				(field
+					(name "Footprint") "RoverSAR:MountingHole_3.2mm_M3_Pad_Via")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "GND")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_H2_M3_Mount")
+			(fields
+				(field
+					(name "Reference") "H")
+				(field
+					(name "Value") "M3_Mount")
+				(field
+					(name "Footprint") "RoverSAR:MountingHole_3.2mm_M3_Pad_Via")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "GND")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_H3_M3_Mount")
+			(fields
+				(field
+					(name "Reference") "H")
+				(field
+					(name "Value") "M3_Mount")
+				(field
+					(name "Footprint") "RoverSAR:MountingHole_3.2mm_M3_Pad_Via")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "GND")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_H4_M3_Mount")
+			(fields
+				(field
+					(name "Reference") "H")
+				(field
+					(name "Value") "M3_Mount")
+				(field
+					(name "Footprint") "RoverSAR:MountingHole_3.2mm_M3_Pad_Via")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "GND")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_J1_XT60_2S_BAT")
+			(fields
+				(field
+					(name "Reference") "J")
+				(field
+					(name "Value") "XT60_2S_BAT")
+				(field
+					(name "Footprint") "RoverSAR:AMASS_XT60_Vertical")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "VBAT+")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "GND")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_M1_JGA25_370_LEFT")
+			(fields
+				(field
+					(name "Reference") "M")
+				(field
+					(name "Value") "JGA25-370_LEFT")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x06_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "M+")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "M-")
+					(type "bidirectional")
+				)
+				(pin
+					(num "3")
+					(name "ENC_VCC")
+					(type "bidirectional")
+				)
+				(pin
+					(num "4")
+					(name "ENC_A")
+					(type "bidirectional")
+				)
+				(pin
+					(num "5")
+					(name "ENC_B")
+					(type "bidirectional")
+				)
+				(pin
+					(num "6")
+					(name "ENC_GND")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_M2_JGA25_370_RIGHT")
+			(fields
+				(field
+					(name "Reference") "M")
+				(field
+					(name "Value") "JGA25-370_RIGHT")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x06_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "M+")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "M-")
+					(type "bidirectional")
+				)
+				(pin
+					(num "3")
+					(name "ENC_VCC")
+					(type "bidirectional")
+				)
+				(pin
+					(num "4")
+					(name "ENC_A")
+					(type "bidirectional")
+				)
+				(pin
+					(num "5")
+					(name "ENC_B")
+					(type "bidirectional")
+				)
+				(pin
+					(num "6")
+					(name "ENC_GND")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_R10_10k")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "10k")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_R11_330R")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "330R")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_R1_22k")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "22k")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_R2_10k")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "10k")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_R3_10k")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "10k")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_R4_4_7k")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "4.7k")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_R5_4_7k")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "4.7k")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_R6_10k")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "10k")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_R7_10k")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "10k")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_R8_10k")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "10k")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_R9_10k")
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "10k")
+				(field
+					(name "Footprint") "RoverSAR:SMD_0805")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_SW1_MAIN_PWR_SW")
+			(fields
+				(field
+					(name "Reference") "SW")
+				(field
+					(name "Value") "MAIN_PWR_SW")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x02_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_SW2_ESTOP_NC_SW")
+			(fields
+				(field
+					(name "Reference") "SW")
+				(field
+					(name "Value") "ESTOP_NC_SW")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x02_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "NC")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "GND")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_U10_LM2596_5_0")
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "LM2596-5.0")
+				(field
+					(name "Footprint") "RoverSAR:Buck_4Pin_Module")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "VIN+")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "GND_IN")
+					(type "bidirectional")
+				)
+				(pin
+					(num "3")
+					(name "GND_OUT")
+					(type "bidirectional")
+				)
+				(pin
+					(num "4")
+					(name "VOUT_5V")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_U1_ESP32_WROOM_32D")
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "ESP32-WROOM-32D")
+				(field
+					(name "Footprint") "RoverSAR:ESP32_DevKit_30P")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "EN")
+					(type "no_connect")
+				)
+				(pin
+					(num "2")
+					(name "GPIO36_ENC_RA")
+					(type "bidirectional")
+				)
+				(pin
+					(num "3")
+					(name "GPIO39_ENC_RB")
+					(type "bidirectional")
+				)
+				(pin
+					(num "4")
+					(name "GPIO34_ENC_LA")
+					(type "bidirectional")
+				)
+				(pin
+					(num "5")
+					(name "GPIO35_ENC_LB")
+					(type "bidirectional")
+				)
+				(pin
+					(num "6")
+					(name "GPIO32_ESTOP")
+					(type "bidirectional")
+				)
+				(pin
+					(num "7")
+					(name "GPIO33_VBAT")
+					(type "bidirectional")
+				)
+				(pin
+					(num "8")
+					(name "GPIO25_PWMA")
+					(type "bidirectional")
+				)
+				(pin
+					(num "9")
+					(name "GPIO26_AIN1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "10")
+					(name "GPIO27_AIN2")
+					(type "bidirectional")
+				)
+				(pin
+					(num "11")
+					(name "GPIO14_XSHUT1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "12")
+					(name "GPIO12_NC")
+					(type "no_connect")
+				)
+				(pin
+					(num "13")
+					(name "GPIO13_XSHUT0")
+					(type "bidirectional")
+				)
+				(pin
+					(num "14")
+					(name "GND1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "15")
+					(name "VIN_5V")
+					(type "bidirectional")
+				)
+				(pin
+					(num "16")
+					(name "3V3")
+					(type "bidirectional")
+				)
+				(pin
+					(num "17")
+					(name "GND2")
+					(type "bidirectional")
+				)
+				(pin
+					(num "18")
+					(name "GPIO15_NC")
+					(type "no_connect")
+				)
+				(pin
+					(num "19")
+					(name "GPIO2_STAT")
+					(type "bidirectional")
+				)
+				(pin
+					(num "20")
+					(name "GPIO4_STBY")
+					(type "bidirectional")
+				)
+				(pin
+					(num "21")
+					(name "GPIO16_XSHUT2")
+					(type "bidirectional")
+				)
+				(pin
+					(num "22")
+					(name "GPIO17_XSHUT3")
+					(type "bidirectional")
+				)
+				(pin
+					(num "23")
+					(name "GPIO5_XSHUT4")
+					(type "bidirectional")
+				)
+				(pin
+					(num "24")
+					(name "GPIO18_BIN1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "25")
+					(name "GPIO19_PWMB")
+					(type "bidirectional")
+				)
+				(pin
+					(num "26")
+					(name "GPIO21_SDA")
+					(type "bidirectional")
+				)
+				(pin
+					(num "27")
+					(name "RX0")
+					(type "no_connect")
+				)
+				(pin
+					(num "28")
+					(name "TX0")
+					(type "no_connect")
+				)
+				(pin
+					(num "29")
+					(name "GPIO22_SCL")
+					(type "bidirectional")
+				)
+				(pin
+					(num "30")
+					(name "GPIO23_BIN2")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_U2_TB6612FNG")
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "TB6612FNG")
+				(field
+					(name "Footprint") "RoverSAR:Breakout_16Pin_DIP")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "VM")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "VCC")
+					(type "bidirectional")
+				)
+				(pin
+					(num "3")
+					(name "GND1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "4")
+					(name "PWMA")
+					(type "bidirectional")
+				)
+				(pin
+					(num "5")
+					(name "AIN1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "6")
+					(name "AIN2")
+					(type "bidirectional")
+				)
+				(pin
+					(num "7")
+					(name "STBY")
+					(type "bidirectional")
+				)
+				(pin
+					(num "8")
+					(name "PWMB")
+					(type "bidirectional")
+				)
+				(pin
+					(num "9")
+					(name "BIN1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "10")
+					(name "BIN2")
+					(type "bidirectional")
+				)
+				(pin
+					(num "11")
+					(name "AO1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "12")
+					(name "AO2")
+					(type "bidirectional")
+				)
+				(pin
+					(num "13")
+					(name "BO1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "14")
+					(name "BO2")
+					(type "bidirectional")
+				)
+				(pin
+					(num "15")
+					(name "GND2")
+					(type "bidirectional")
+				)
+				(pin
+					(num "16")
+					(name "GND3")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_U3_MPU6050_GY521")
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "MPU6050-GY521")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x04_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "VCC")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "GND")
+					(type "bidirectional")
+				)
+				(pin
+					(num "3")
+					(name "SCL")
+					(type "bidirectional")
+				)
+				(pin
+					(num "4")
+					(name "SDA")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_U4_VL53L0X_0")
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "VL53L0X_0")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x05_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "VIN")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "GND")
+					(type "bidirectional")
+				)
+				(pin
+					(num "3")
+					(name "SCL")
+					(type "bidirectional")
+				)
+				(pin
+					(num "4")
+					(name "SDA")
+					(type "bidirectional")
+				)
+				(pin
+					(num "5")
+					(name "XSHUT")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_U5_VL53L0X_1")
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "VL53L0X_1")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x05_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "VIN")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "GND")
+					(type "bidirectional")
+				)
+				(pin
+					(num "3")
+					(name "SCL")
+					(type "bidirectional")
+				)
+				(pin
+					(num "4")
+					(name "SDA")
+					(type "bidirectional")
+				)
+				(pin
+					(num "5")
+					(name "XSHUT")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_U6_VL53L0X_2")
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "VL53L0X_2")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x05_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "VIN")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "GND")
+					(type "bidirectional")
+				)
+				(pin
+					(num "3")
+					(name "SCL")
+					(type "bidirectional")
+				)
+				(pin
+					(num "4")
+					(name "SDA")
+					(type "bidirectional")
+				)
+				(pin
+					(num "5")
+					(name "XSHUT")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_U7_VL53L0X_3")
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "VL53L0X_3")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x05_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "VIN")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "GND")
+					(type "bidirectional")
+				)
+				(pin
+					(num "3")
+					(name "SCL")
+					(type "bidirectional")
+				)
+				(pin
+					(num "4")
+					(name "SDA")
+					(type "bidirectional")
+				)
+				(pin
+					(num "5")
+					(name "XSHUT")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_U8_VL53L0X_4")
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "VL53L0X_4")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x05_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "VIN")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "GND")
+					(type "bidirectional")
+				)
+				(pin
+					(num "3")
+					(name "SCL")
+					(type "bidirectional")
+				)
+				(pin
+					(num "4")
+					(name "SDA")
+					(type "bidirectional")
+				)
+				(pin
+					(num "5")
+					(name "XSHUT")
+					(type "bidirectional")
+				)
+			)
+		)
+		(libpart
+			(lib "RoverSAR")
+			(part "SYM_U9_ESP32_CAM")
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "ESP32-CAM")
+				(field
+					(name "Footprint") "RoverSAR:PinHeader_1x02_P2.54mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "5V")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "GND")
+					(type "bidirectional")
+				)
+			)
+		)
+	)
+	(libraries
+		(library
+			(logical "RoverSAR")
+			(uri "${KIPRJMOD}/symbols/RoverSAR.kicad_sym")
+		)
+	)
+	(nets
+		(net
+			(code "1")
+			(name "AIN1")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "9")
+				(pinfunction "GPIO26_AIN1_9")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U2")
+				(pin "5")
+				(pinfunction "AIN1_5")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "2")
+			(name "AIN2")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "10")
+				(pinfunction "GPIO27_AIN2_10")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U2")
+				(pin "6")
+				(pinfunction "AIN2_6")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "3")
+			(name "BIN1")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "24")
+				(pinfunction "GPIO18_BIN1_24")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U2")
+				(pin "9")
+				(pinfunction "BIN1_9")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "4")
+			(name "BIN2")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "30")
+				(pinfunction "GPIO23_BIN2_30")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U2")
+				(pin "10")
+				(pinfunction "BIN2_10")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "5")
+			(name "ENC_L_A")
+			(class "Default")
+			(node
+				(ref "M1")
+				(pin "4")
+				(pinfunction "ENC_A_4")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R6")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U1")
+				(pin "4")
+				(pinfunction "GPIO34_ENC_LA_4")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "6")
+			(name "ENC_L_B")
+			(class "Default")
+			(node
+				(ref "M1")
+				(pin "5")
+				(pinfunction "ENC_B_5")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R7")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U1")
+				(pin "5")
+				(pinfunction "GPIO35_ENC_LB_5")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "7")
+			(name "ENC_R_A")
+			(class "Default")
+			(node
+				(ref "M2")
+				(pin "4")
+				(pinfunction "ENC_A_4")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R8")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U1")
+				(pin "2")
+				(pinfunction "GPIO36_ENC_RA_2")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "8")
+			(name "ENC_R_B")
+			(class "Default")
+			(node
+				(ref "M2")
+				(pin "5")
+				(pinfunction "ENC_B_5")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R9")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U1")
+				(pin "3")
+				(pinfunction "GPIO39_ENC_RB_3")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "9")
+			(name "ESTOP_HW")
+			(class "Default")
+			(node
+				(ref "R10")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "SW2")
+				(pin "1")
+				(pinfunction "NC_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U1")
+				(pin "6")
+				(pinfunction "GPIO32_ESTOP_6")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "10")
+			(name "GND")
+			(class "Default")
+			(node
+				(ref "C1")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "C2")
+				(pin "2")
+				(pinfunction "-_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "C3")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "C4")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "C5")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "C6")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "C7")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "C8")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "D1")
+				(pin "2")
+				(pinfunction "A_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "H1")
+				(pin "1")
+				(pinfunction "GND_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "H2")
+				(pin "1")
+				(pinfunction "GND_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "H3")
+				(pin "1")
+				(pinfunction "GND_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "H4")
+				(pin "1")
+				(pinfunction "GND_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "J1")
+				(pin "2")
+				(pinfunction "GND_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "M1")
+				(pin "6")
+				(pinfunction "ENC_GND_6")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "M2")
+				(pin "6")
+				(pinfunction "ENC_GND_6")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R11")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R2")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R3")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "SW2")
+				(pin "2")
+				(pinfunction "GND_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U1")
+				(pin "14")
+				(pinfunction "GND1_14")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U1")
+				(pin "17")
+				(pinfunction "GND2_17")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U10")
+				(pin "2")
+				(pinfunction "GND_IN_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U10")
+				(pin "3")
+				(pinfunction "GND_OUT_3")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U2")
+				(pin "15")
+				(pinfunction "GND2_15")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U2")
+				(pin "16")
+				(pinfunction "GND3_16")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U2")
+				(pin "3")
+				(pinfunction "GND1_3")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U3")
+				(pin "2")
+				(pinfunction "GND_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U4")
+				(pin "2")
+				(pinfunction "GND_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U5")
+				(pin "2")
+				(pinfunction "GND_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U6")
+				(pin "2")
+				(pinfunction "GND_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U7")
+				(pin "2")
+				(pinfunction "GND_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U8")
+				(pin "2")
+				(pinfunction "GND_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U9")
+				(pin "2")
+				(pinfunction "GND_2")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "11")
+			(name "I2C_SCL")
+			(class "Default")
+			(node
+				(ref "R5")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U1")
+				(pin "29")
+				(pinfunction "GPIO22_SCL_29")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U3")
+				(pin "3")
+				(pinfunction "SCL_3")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U4")
+				(pin "3")
+				(pinfunction "SCL_3")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U5")
+				(pin "3")
+				(pinfunction "SCL_3")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U6")
+				(pin "3")
+				(pinfunction "SCL_3")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U7")
+				(pin "3")
+				(pinfunction "SCL_3")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U8")
+				(pin "3")
+				(pinfunction "SCL_3")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "12")
+			(name "I2C_SDA")
+			(class "Default")
+			(node
+				(ref "R4")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U1")
+				(pin "26")
+				(pinfunction "GPIO21_SDA_26")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U3")
+				(pin "4")
+				(pinfunction "SDA_4")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U4")
+				(pin "4")
+				(pinfunction "SDA_4")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U5")
+				(pin "4")
+				(pinfunction "SDA_4")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U6")
+				(pin "4")
+				(pinfunction "SDA_4")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U7")
+				(pin "4")
+				(pinfunction "SDA_4")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U8")
+				(pin "4")
+				(pinfunction "SDA_4")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "13")
+			(name "M_L_A")
+			(class "Default")
+			(node
+				(ref "M1")
+				(pin "1")
+				(pinfunction "M+_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U2")
+				(pin "11")
+				(pinfunction "AO1_11")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "14")
+			(name "M_L_B")
+			(class "Default")
+			(node
+				(ref "M1")
+				(pin "2")
+				(pinfunction "M-_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U2")
+				(pin "12")
+				(pinfunction "AO2_12")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "15")
+			(name "M_R_A")
+			(class "Default")
+			(node
+				(ref "M2")
+				(pin "1")
+				(pinfunction "M+_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U2")
+				(pin "13")
+				(pinfunction "BO1_13")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "16")
+			(name "M_R_B")
+			(class "Default")
+			(node
+				(ref "M2")
+				(pin "2")
+				(pinfunction "M-_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U2")
+				(pin "14")
+				(pinfunction "BO2_14")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "17")
+			(name "STATUS_LED")
+			(class "Default")
+			(node
+				(ref "D2")
+				(pin "1")
+				(pinfunction "A_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U1")
+				(pin "19")
+				(pinfunction "GPIO2_STAT_19")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "18")
+			(name "STAT_K")
+			(class "Default")
+			(node
+				(ref "D2")
+				(pin "2")
+				(pinfunction "K_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R11")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "19")
+			(name "TB6612_PWMA")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "8")
+				(pinfunction "GPIO25_PWMA_8")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U2")
+				(pin "4")
+				(pinfunction "PWMA_4")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "20")
+			(name "TB6612_PWMB")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "25")
+				(pinfunction "GPIO19_PWMB_25")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U2")
+				(pin "8")
+				(pinfunction "PWMB_8")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "21")
+			(name "TB6612_STBY")
+			(class "Default")
+			(node
+				(ref "R3")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U1")
+				(pin "20")
+				(pinfunction "GPIO4_STBY_20")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U2")
+				(pin "7")
+				(pinfunction "STBY_7")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "22")
+			(name "TOF_XSHUT_0")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "13")
+				(pinfunction "GPIO13_XSHUT0_13")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U4")
+				(pin "5")
+				(pinfunction "XSHUT_5")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "23")
+			(name "TOF_XSHUT_1")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "11")
+				(pinfunction "GPIO14_XSHUT1_11")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U5")
+				(pin "5")
+				(pinfunction "XSHUT_5")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "24")
+			(name "TOF_XSHUT_2")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "21")
+				(pinfunction "GPIO16_XSHUT2_21")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U6")
+				(pin "5")
+				(pinfunction "XSHUT_5")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "25")
+			(name "TOF_XSHUT_3")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "22")
+				(pinfunction "GPIO17_XSHUT3_22")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U7")
+				(pin "5")
+				(pinfunction "XSHUT_5")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "26")
+			(name "TOF_XSHUT_4")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "23")
+				(pinfunction "GPIO5_XSHUT4_23")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U8")
+				(pin "5")
+				(pinfunction "XSHUT_5")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "27")
+			(name "V3_3")
+			(class "Default")
+			(node
+				(ref "C3")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "C4")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "C5")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "C6")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "C7")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "C8")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "M1")
+				(pin "3")
+				(pinfunction "ENC_VCC_3")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "M2")
+				(pin "3")
+				(pinfunction "ENC_VCC_3")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R10")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R4")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R5")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R6")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R7")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R8")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R9")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U1")
+				(pin "16")
+				(pinfunction "3V3_16")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U2")
+				(pin "2")
+				(pinfunction "VCC_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U3")
+				(pin "1")
+				(pinfunction "VCC_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U4")
+				(pin "1")
+				(pinfunction "VIN_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U5")
+				(pin "1")
+				(pinfunction "VIN_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U6")
+				(pin "1")
+				(pinfunction "VIN_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U7")
+				(pin "1")
+				(pinfunction "VIN_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U8")
+				(pin "1")
+				(pinfunction "VIN_1")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "28")
+			(name "V5_REG")
+			(class "Default")
+			(node
+				(ref "C2")
+				(pin "1")
+				(pinfunction "+_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U1")
+				(pin "15")
+				(pinfunction "VIN_5V_15")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U10")
+				(pin "4")
+				(pinfunction "VOUT_5V_4")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U9")
+				(pin "1")
+				(pinfunction "5V_1")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "29")
+			(name "VBAT_ADC")
+			(class "Default")
+			(node
+				(ref "C1")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R1")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R2")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U1")
+				(pin "7")
+				(pinfunction "GPIO33_VBAT_7")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "30")
+			(name "VBAT_FUSED")
+			(class "Default")
+			(node
+				(ref "F1")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "SW1")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "31")
+			(name "VBAT_RAW")
+			(class "Default")
+			(node
+				(ref "F1")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "J1")
+				(pin "1")
+				(pinfunction "VBAT+_1")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "32")
+			(name "VBAT_SW")
+			(class "Default")
+			(node
+				(ref "D1")
+				(pin "1")
+				(pinfunction "K_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R1")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "SW1")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U10")
+				(pin "1")
+				(pinfunction "VIN+_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U2")
+				(pin "1")
+				(pinfunction "VM_1")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "33")
+			(name "unconnected-(U1-EN-Pad1)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "1")
+				(pinfunction "EN_1")
+				(pintype "no_connect")
+			)
+		)
+		(net
+			(code "34")
+			(name "unconnected-(U1-GPIO12_NC-Pad12)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "12")
+				(pinfunction "GPIO12_NC_12")
+				(pintype "no_connect")
+			)
+		)
+		(net
+			(code "35")
+			(name "unconnected-(U1-GPIO15_NC-Pad18)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "18")
+				(pinfunction "GPIO15_NC_18")
+				(pintype "no_connect")
+			)
+		)
+		(net
+			(code "36")
+			(name "unconnected-(U1-RX0-Pad27)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "27")
+				(pinfunction "RX0_27")
+				(pintype "no_connect")
+			)
+		)
+		(net
+			(code "37")
+			(name "unconnected-(U1-TX0-Pad28)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "28")
+				(pinfunction "TX0_28")
+				(pintype "no_connect")
+			)
+		)
+	)
 )

@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "RoverSAR")(type "KiCad")(uri "${KIPRJMOD}/footprints/RoverSAR.pretty")(options "")(descr "RoverSAR project footprints"))
+)
