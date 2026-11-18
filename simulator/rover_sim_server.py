@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import contextlib
 import json
+import time
 from pathlib import Path
 from typing import Literal
 
@@ -108,14 +109,23 @@ def create_app(config: RoverConfig | None = None) -> FastAPI:
 
         async def sim_worker() -> None:
             dt = 1.0 / cfg.sim_hz
+            last_wall = time.monotonic()
+            accum = 0.0
             tick = 0
             while not stop_event.is_set():
-                engine.step(dt)
-                tick += 1
-                # Broadcast full state + grid every 3 ticks (~16 Hz)
-                if tick % 3 == 0 and ws_manager.active:
+                now_wall = time.monotonic()
+                accum = min(0.25, accum + (now_wall - last_wall))
+                last_wall = now_wall
+                broadcast_pending = False
+                while accum >= dt:
+                    engine.step(dt)
+                    accum -= dt
+                    tick += 1
+                    if tick % 3 == 0:
+                        broadcast_pending = True
+                if broadcast_pending and ws_manager.active:
                     await ws_manager.broadcast_json(engine.get_telemetry(include_grid=True))
-                await asyncio.sleep(dt)
+                await asyncio.sleep(0.01)
 
         task = asyncio.create_task(sim_worker())
         app_instance.state.engine = engine
