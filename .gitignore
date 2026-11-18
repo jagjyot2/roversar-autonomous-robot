@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+.mypy_cache/
+
+# PlatformIO / C++
+firmware/.pio/
+.pio/
+*.elf
+*.bin
+*.map
+*.o
+*.a
+
+# Node / Dashboard
+dashboard/node_modules/
+dashboard/.vite/
+*.local
+
+# Environment & Secrets
+.env
+*.pem
+*.key
+secrets/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.bak
