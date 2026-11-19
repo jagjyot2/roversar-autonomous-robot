@@ -2,7 +2,7 @@
 	(version "E")
 	(design
 		(source "S:\\Projects\\Multi projects\\ENGINEERING-PORTFOLIO\\05-ROVERSAR\\hardware\\roversar.kicad_sch")
-		(date "2026-11-18T18:45:13")
+		(date "2026-11-19T17:55:12")
 		(tool "Eeschema 10.0.8")
 		(sheet
 			(number "1")
@@ -589,14 +589,14 @@
 		(comp
 			(ref "F1")
 			(value "5A_ATO_FUSE")
-			(footprint "RoverSAR:PinHeader_1x02_P2.54mm")
+			(footprint "RoverSAR:Fuseholder_Blade_ATO_Littelfuse_Pudenz_2_Pin")
 			(fields
 				(field
 					(name "MPN") "0287005")
 				(field
-					(name "Rating") "32V / 5A")
+					(name "Rating") "32V / 5A ATO")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x02_P2.54mm")
+					(name "Footprint") "RoverSAR:Fuseholder_Blade_ATO_Littelfuse_Pudenz_2_Pin")
 				(field
 					(name "Datasheet")
 				)
@@ -615,7 +615,7 @@
 			)
 			(property
 				(name "Rating")
-				(value "32V / 5A")
+				(value "32V / 5A ATO")
 			)
 			(property
 				(name "Sheetname")
@@ -901,7 +901,7 @@
 		(comp
 			(ref "M1")
 			(value "JGA25-370_LEFT")
-			(footprint "RoverSAR:PinHeader_1x06_P2.54mm")
+			(footprint "RoverSAR:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical")
 			(fields
 				(field
 					(name "MPN") "JGA25-370")
@@ -910,7 +910,7 @@
 				(field
 					(name "Rating") "7.4V / 1.5A")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x06_P2.54mm")
+					(name "Footprint") "RoverSAR:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -977,7 +977,7 @@
 		(comp
 			(ref "M2")
 			(value "JGA25-370_RIGHT")
-			(footprint "RoverSAR:PinHeader_1x06_P2.54mm")
+			(footprint "RoverSAR:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical")
 			(fields
 				(field
 					(name "MPN") "JGA25-370")
@@ -986,7 +986,7 @@
 				(field
 					(name "Rating") "7.4V / 1.5A")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x06_P2.54mm")
+					(name "Footprint") "RoverSAR:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -1625,14 +1625,14 @@
 		(comp
 			(ref "SW1")
 			(value "MAIN_PWR_SW")
-			(footprint "RoverSAR:PinHeader_1x02_P2.54mm")
+			(footprint "RoverSAR:TerminalBlock_bornier-2_P5.08mm")
 			(fields
 				(field
-					(name "MPN") "R13-112")
+					(name "MPN") "R13-112 / TB-5.08")
 				(field
-					(name "Rating") "10A")
+					(name "Rating") "10A / 5.08mm")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x02_P2.54mm")
+					(name "Footprint") "RoverSAR:TerminalBlock_bornier-2_P5.08mm")
 				(field
 					(name "Datasheet")
 				)
@@ -1647,11 +1647,11 @@
 			)
 			(property
 				(name "MPN")
-				(value "R13-112")
+				(value "R13-112 / TB-5.08")
 			)
 			(property
 				(name "Rating")
-				(value "10A")
+				(value "10A / 5.08mm")
 			)
 			(property
 				(name "Sheetname")
@@ -1995,7 +1995,7 @@
 		(comp
 			(ref "U3")
 			(value "MPU6050-GY521")
-			(footprint "RoverSAR:PinHeader_1x04_P2.54mm")
+			(footprint "RoverSAR:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical")
 			(fields
 				(field
 					(name "MPN") "GY-521")
@@ -2004,7 +2004,7 @@
 				(field
 					(name "Rating") "3.3V / I2C 0x68")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x04_P2.54mm")
+					(name "Footprint") "RoverSAR:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -2065,7 +2065,7 @@
 		(comp
 			(ref "U4")
 			(value "VL53L0X_0")
-			(footprint "RoverSAR:PinHeader_1x05_P2.54mm")
+			(footprint "RoverSAR:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical")
 			(fields
 				(field
 					(name "MPN") "GY-530")
@@ -2074,7 +2074,7 @@
 				(field
 					(name "Rating") "3.3V / I2C")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x05_P2.54mm")
+					(name "Footprint") "RoverSAR:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -2138,7 +2138,7 @@
 		(comp
 			(ref "U5")
 			(value "VL53L0X_1")
-			(footprint "RoverSAR:PinHeader_1x05_P2.54mm")
+			(footprint "RoverSAR:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical")
 			(fields
 				(field
 					(name "MPN") "GY-530")
@@ -2147,7 +2147,7 @@
 				(field
 					(name "Rating") "3.3V / I2C")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x05_P2.54mm")
+					(name "Footprint") "RoverSAR:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -2211,7 +2211,7 @@
 		(comp
 			(ref "U6")
 			(value "VL53L0X_2")
-			(footprint "RoverSAR:PinHeader_1x05_P2.54mm")
+			(footprint "RoverSAR:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical")
 			(fields
 				(field
 					(name "MPN") "GY-530")
@@ -2220,7 +2220,7 @@
 				(field
 					(name "Rating") "3.3V / I2C")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x05_P2.54mm")
+					(name "Footprint") "RoverSAR:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -2284,7 +2284,7 @@
 		(comp
 			(ref "U7")
 			(value "VL53L0X_3")
-			(footprint "RoverSAR:PinHeader_1x05_P2.54mm")
+			(footprint "RoverSAR:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical")
 			(fields
 				(field
 					(name "MPN") "GY-530")
@@ -2293,7 +2293,7 @@
 				(field
 					(name "Rating") "3.3V / I2C")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x05_P2.54mm")
+					(name "Footprint") "RoverSAR:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -2357,7 +2357,7 @@
 		(comp
 			(ref "U8")
 			(value "VL53L0X_4")
-			(footprint "RoverSAR:PinHeader_1x05_P2.54mm")
+			(footprint "RoverSAR:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical")
 			(fields
 				(field
 					(name "MPN") "GY-530")
@@ -2366,7 +2366,7 @@
 				(field
 					(name "Rating") "3.3V / I2C")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x05_P2.54mm")
+					(name "Footprint") "RoverSAR:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -2430,16 +2430,16 @@
 		(comp
 			(ref "U9")
 			(value "ESP32-CAM")
-			(footprint "RoverSAR:PinHeader_1x02_P2.54mm")
+			(footprint "RoverSAR:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical")
 			(fields
 				(field
 					(name "MPN") "ESP32-CAM")
 				(field
 					(name "Manufacturer") "Ai-Thinker")
 				(field
-					(name "Rating") "5.0V / 500mA")
+					(name "Rating") "5.0V / 500mA + UART")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x02_P2.54mm")
+					(name "Footprint") "RoverSAR:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -2462,7 +2462,7 @@
 			)
 			(property
 				(name "Rating")
-				(value "5.0V / 500mA")
+				(value "5.0V / 500mA + UART")
 			)
 			(property
 				(name "Sheetname")
@@ -2486,6 +2486,12 @@
 						)
 						(pin
 							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
 						)
 					)
 				)
@@ -2874,7 +2880,7 @@
 				(field
 					(name "Value") "5A_ATO_FUSE")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x02_P2.54mm")
+					(name "Footprint") "RoverSAR:Fuseholder_Blade_ATO_Littelfuse_Pudenz_2_Pin")
 				(field
 					(name "Datasheet")
 				)
@@ -3034,7 +3040,7 @@
 				(field
 					(name "Value") "JGA25-370_LEFT")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x06_P2.54mm")
+					(name "Footprint") "RoverSAR:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -3084,7 +3090,7 @@
 				(field
 					(name "Value") "JGA25-370_RIGHT")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x06_P2.54mm")
+					(name "Footprint") "RoverSAR:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -3464,7 +3470,7 @@
 				(field
 					(name "Value") "MAIN_PWR_SW")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x02_P2.54mm")
+					(name "Footprint") "RoverSAR:TerminalBlock_bornier-2_P5.08mm")
 				(field
 					(name "Datasheet")
 				)
@@ -3706,12 +3712,12 @@
 				(pin
 					(num "27")
 					(name "RX0")
-					(type "no_connect")
+					(type "bidirectional")
 				)
 				(pin
 					(num "28")
 					(name "TX0")
-					(type "no_connect")
+					(type "bidirectional")
 				)
 				(pin
 					(num "29")
@@ -3834,7 +3840,7 @@
 				(field
 					(name "Value") "MPU6050-GY521")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x04_P2.54mm")
+					(name "Footprint") "RoverSAR:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -3874,7 +3880,7 @@
 				(field
 					(name "Value") "VL53L0X_0")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x05_P2.54mm")
+					(name "Footprint") "RoverSAR:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -3919,7 +3925,7 @@
 				(field
 					(name "Value") "VL53L0X_1")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x05_P2.54mm")
+					(name "Footprint") "RoverSAR:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -3964,7 +3970,7 @@
 				(field
 					(name "Value") "VL53L0X_2")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x05_P2.54mm")
+					(name "Footprint") "RoverSAR:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -4009,7 +4015,7 @@
 				(field
 					(name "Value") "VL53L0X_3")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x05_P2.54mm")
+					(name "Footprint") "RoverSAR:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -4054,7 +4060,7 @@
 				(field
 					(name "Value") "VL53L0X_4")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x05_P2.54mm")
+					(name "Footprint") "RoverSAR:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -4099,7 +4105,7 @@
 				(field
 					(name "Value") "ESP32-CAM")
 				(field
-					(name "Footprint") "RoverSAR:PinHeader_1x02_P2.54mm")
+					(name "Footprint") "RoverSAR:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical")
 				(field
 					(name "Datasheet")
 				)
@@ -4116,6 +4122,16 @@
 				(pin
 					(num "2")
 					(name "GND")
+					(type "bidirectional")
+				)
+				(pin
+					(num "3")
+					(name "U0TX")
+					(type "bidirectional")
+				)
+				(pin
+					(num "4")
+					(name "U0RX")
 					(type "bidirectional")
 				)
 			)
@@ -4198,6 +4214,40 @@
 		)
 		(net
 			(code "5")
+			(name "CAM_UART_RX")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "28")
+				(pinfunction "TX0_28")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U9")
+				(pin "4")
+				(pinfunction "U0RX_4")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "6")
+			(name "CAM_UART_TX")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "27")
+				(pinfunction "RX0_27")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "U9")
+				(pin "3")
+				(pinfunction "U0TX_3")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "7")
 			(name "ENC_L_A")
 			(class "Default")
 			(node
@@ -4220,7 +4270,7 @@
 			)
 		)
 		(net
-			(code "6")
+			(code "8")
 			(name "ENC_L_B")
 			(class "Default")
 			(node
@@ -4243,7 +4293,7 @@
 			)
 		)
 		(net
-			(code "7")
+			(code "9")
 			(name "ENC_R_A")
 			(class "Default")
 			(node
@@ -4266,7 +4316,7 @@
 			)
 		)
 		(net
-			(code "8")
+			(code "10")
 			(name "ENC_R_B")
 			(class "Default")
 			(node
@@ -4289,7 +4339,7 @@
 			)
 		)
 		(net
-			(code "9")
+			(code "11")
 			(name "ESTOP_HW")
 			(class "Default")
 			(node
@@ -4312,7 +4362,7 @@
 			)
 		)
 		(net
-			(code "10")
+			(code "12")
 			(name "GND")
 			(class "Default")
 			(node
@@ -4521,7 +4571,7 @@
 			)
 		)
 		(net
-			(code "11")
+			(code "13")
 			(name "I2C_SCL")
 			(class "Default")
 			(node
@@ -4574,7 +4624,7 @@
 			)
 		)
 		(net
-			(code "12")
+			(code "14")
 			(name "I2C_SDA")
 			(class "Default")
 			(node
@@ -4627,7 +4677,7 @@
 			)
 		)
 		(net
-			(code "13")
+			(code "15")
 			(name "M_L_A")
 			(class "Default")
 			(node
@@ -4644,7 +4694,7 @@
 			)
 		)
 		(net
-			(code "14")
+			(code "16")
 			(name "M_L_B")
 			(class "Default")
 			(node
@@ -4661,7 +4711,7 @@
 			)
 		)
 		(net
-			(code "15")
+			(code "17")
 			(name "M_R_A")
 			(class "Default")
 			(node
@@ -4678,7 +4728,7 @@
 			)
 		)
 		(net
-			(code "16")
+			(code "18")
 			(name "M_R_B")
 			(class "Default")
 			(node
@@ -4695,7 +4745,7 @@
 			)
 		)
 		(net
-			(code "17")
+			(code "19")
 			(name "STATUS_LED")
 			(class "Default")
 			(node
@@ -4712,7 +4762,7 @@
 			)
 		)
 		(net
-			(code "18")
+			(code "20")
 			(name "STAT_K")
 			(class "Default")
 			(node
@@ -4729,7 +4779,7 @@
 			)
 		)
 		(net
-			(code "19")
+			(code "21")
 			(name "TB6612_PWMA")
 			(class "Default")
 			(node
@@ -4746,7 +4796,7 @@
 			)
 		)
 		(net
-			(code "20")
+			(code "22")
 			(name "TB6612_PWMB")
 			(class "Default")
 			(node
@@ -4763,7 +4813,7 @@
 			)
 		)
 		(net
-			(code "21")
+			(code "23")
 			(name "TB6612_STBY")
 			(class "Default")
 			(node
@@ -4786,7 +4836,7 @@
 			)
 		)
 		(net
-			(code "22")
+			(code "24")
 			(name "TOF_XSHUT_0")
 			(class "Default")
 			(node
@@ -4803,7 +4853,7 @@
 			)
 		)
 		(net
-			(code "23")
+			(code "25")
 			(name "TOF_XSHUT_1")
 			(class "Default")
 			(node
@@ -4820,7 +4870,7 @@
 			)
 		)
 		(net
-			(code "24")
+			(code "26")
 			(name "TOF_XSHUT_2")
 			(class "Default")
 			(node
@@ -4837,7 +4887,7 @@
 			)
 		)
 		(net
-			(code "25")
+			(code "27")
 			(name "TOF_XSHUT_3")
 			(class "Default")
 			(node
@@ -4854,7 +4904,7 @@
 			)
 		)
 		(net
-			(code "26")
+			(code "28")
 			(name "TOF_XSHUT_4")
 			(class "Default")
 			(node
@@ -4871,7 +4921,7 @@
 			)
 		)
 		(net
-			(code "27")
+			(code "29")
 			(name "V3_3")
 			(class "Default")
 			(node
@@ -5014,7 +5064,7 @@
 			)
 		)
 		(net
-			(code "28")
+			(code "30")
 			(name "V5_REG")
 			(class "Default")
 			(node
@@ -5043,7 +5093,7 @@
 			)
 		)
 		(net
-			(code "29")
+			(code "31")
 			(name "VBAT_ADC")
 			(class "Default")
 			(node
@@ -5072,7 +5122,7 @@
 			)
 		)
 		(net
-			(code "30")
+			(code "32")
 			(name "VBAT_FUSED")
 			(class "Default")
 			(node
@@ -5089,7 +5139,7 @@
 			)
 		)
 		(net
-			(code "31")
+			(code "33")
 			(name "VBAT_RAW")
 			(class "Default")
 			(node
@@ -5106,7 +5156,7 @@
 			)
 		)
 		(net
-			(code "32")
+			(code "34")
 			(name "VBAT_SW")
 			(class "Default")
 			(node
@@ -5141,7 +5191,7 @@
 			)
 		)
 		(net
-			(code "33")
+			(code "35")
 			(name "unconnected-(U1-EN-Pad1)")
 			(class "Default")
 			(node
@@ -5152,7 +5202,7 @@
 			)
 		)
 		(net
-			(code "34")
+			(code "36")
 			(name "unconnected-(U1-GPIO12_NC-Pad12)")
 			(class "Default")
 			(node
@@ -5163,35 +5213,13 @@
 			)
 		)
 		(net
-			(code "35")
+			(code "37")
 			(name "unconnected-(U1-GPIO15_NC-Pad18)")
 			(class "Default")
 			(node
 				(ref "U1")
 				(pin "18")
 				(pinfunction "GPIO15_NC_18")
-				(pintype "no_connect")
-			)
-		)
-		(net
-			(code "36")
-			(name "unconnected-(U1-RX0-Pad27)")
-			(class "Default")
-			(node
-				(ref "U1")
-				(pin "27")
-				(pinfunction "RX0_27")
-				(pintype "no_connect")
-			)
-		)
-		(net
-			(code "37")
-			(name "unconnected-(U1-TX0-Pad28)")
-			(class "Default")
-			(node
-				(ref "U1")
-				(pin "28")
-				(pinfunction "TX0_28")
 				(pintype "no_connect")
 			)
 		)
